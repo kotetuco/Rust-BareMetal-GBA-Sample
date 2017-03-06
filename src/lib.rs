@@ -3,9 +3,12 @@
 // 
 
 #![feature(lang_items)]
-#![feature(start)]
 #![no_std]
 #![feature(asm)]
+#![feature(compiler_builtins_lib)]
+
+extern crate compiler_builtins;
+extern crate rlibc;
 
 #[no_mangle]
 pub extern "C" fn entry() {
@@ -41,10 +44,14 @@ fn convert_u16_color(r:u8, g:u8, b:u8) -> u16{
     return (((b >> 3) as u16) << 10) + (((g >> 3) as u16) << 5) + (r >> 3) as u16;
 }
 
+#[allow(private_no_mangle_fns)]
+#[no_mangle]
 #[lang = "panic_fmt"]
-extern fn panic_fmt() -> ! {
+extern "C" fn panic_fmt() -> ! {
     loop {}
 }
 
 #[lang = "eh_personality"]
 pub extern fn eh_personality() {}
+
+

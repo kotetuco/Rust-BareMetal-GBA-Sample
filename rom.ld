@@ -1,6 +1,6 @@
 OUTPUT_FORMAT("elf32-littlearm", "elf32-littlearm", "elf32-littlearm")
 OUTPUT_ARCH(arm)
-ENTRY(entry)
+ENTRY(_start)
 
 SECTIONS{
 	/* 0x02000000: using Multiboot (boot cable) */
