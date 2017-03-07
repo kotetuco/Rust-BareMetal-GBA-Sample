@@ -38,6 +38,38 @@ impl Graphics {
         }
     }
 
+    #[no_mangle]
+    pub fn draw_circle(&self, center_x:u16, center_y:u16, r:u16, color:&RGB) {
+        let mut x: u16 = r;
+        let mut y: u16 = 0;
+        let mut f: i32 = 3 - ((r as i32) * 2);
+
+        // draw center
+        self.draw_dot(center_x, center_y, color);
+
+        loop {
+            if x < y {
+                break;
+            }
+
+            self.draw_dot(center_x + x, center_y + y, color);
+            self.draw_dot(center_x - x, center_y + y, color);
+            self.draw_dot(center_x + x, center_y - y, color);
+            self.draw_dot(center_x - x, center_y - y, color);
+            self.draw_dot(center_x + y, center_y + x, color);
+            self.draw_dot(center_x - y, center_y + x, color);
+            self.draw_dot(center_x + y, center_y - x, color);
+            self.draw_dot(center_x - y, center_y - x, color);
+
+            if f >= 0 {
+                x -= 1;
+                f -= (x * 4) as i32;
+            }
+            y += 1;
+            f += (4 * y + 2) as i32;
+        }
+    }
+
     pub fn width(&self) -> u16 {
         return self.screen_x;
     }

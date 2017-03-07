@@ -26,6 +26,7 @@ pub extern "C" fn entry() {
     graphics.draw_box(20, 20, 100, 100, &RGB::light_red());
     graphics.draw_box(70, 50, 100, 100, &RGB::light_green());
     graphics.draw_box(120, 80, 100, 100, &RGB::light_blue());
+    graphics.draw_circle(25, 25, 20, &RGB::light_yellow());
 
     loop {}
 }
