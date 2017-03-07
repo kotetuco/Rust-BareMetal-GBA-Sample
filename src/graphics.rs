@@ -10,6 +10,7 @@ pub struct Graphics {
     vram_address: u32,
     screen_x: u16,
     screen_y: u16,
+    font: Font,
 }
 
 impl Graphics {
@@ -18,6 +19,7 @@ impl Graphics {
             vram_address: 0x06000000,
             screen_x: 240,
             screen_y: 160,
+            font: Font::new(),
         }
     }
 
@@ -71,7 +73,7 @@ impl Graphics {
     }
 
     pub fn draw_char(&self, ch:char, x:u16, y:u16, color:&RGB) {
-        let char_data:[u8; 16] = Font::get_charactor(ch);
+        let char_data:[u8; 16] = self.font.get_character(ch);
         for index in 0..15 {
             let byte_data:u8 = char_data[index];
             let offset_y = index as u16;
@@ -83,6 +85,14 @@ impl Graphics {
             if (byte_data & 0x04) != 0x00 { self.draw_dot(x + 5, y + offset_y, color); }
             if (byte_data & 0x02) != 0x00 { self.draw_dot(x + 6, y + offset_y, color); }
             if (byte_data & 0x01) != 0x00 { self.draw_dot(x + 7, y + offset_y, color); }
+        }
+    }
+
+    pub fn draw_string(&self, string:&str, x:u16, y:u16, color:&RGB) {
+        let mut offset_x: u16 = 0;
+        for character in string.chars() {
+            self.draw_char(character, (x + offset_x), y, color);
+            offset_x += self.font.font_width();
         }
     }
 
