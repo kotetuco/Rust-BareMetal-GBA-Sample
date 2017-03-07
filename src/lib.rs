@@ -1,6 +1,6 @@
 //
 // kotetuco, 2017
-// 
+//
 
 #![feature(lang_items)]
 #![no_std]
@@ -10,22 +10,23 @@
 extern crate compiler_builtins;
 extern crate rlibc;
 
+mod rgb;
+mod gba_color;
+mod graphics;
+
+use rgb::RGB;
+use rgb::RGBDef;
+use graphics::Graphics;
+
 #[no_mangle]
 pub extern "C" fn entry() {
     init_graphic();
 
-    let color:u16 = convert_u16_color(0, 255, 0);
-    let vram_address:u32 = 0x06000000;
-
-    for y in 0..160 {
-        for x in 0..240 {
-            let offset: u32 = ((y * 240) + x) as u32;
-            let vram: *mut u16 = (vram_address + (offset * 2)) as *mut u16;
-            unsafe {
-                *vram = color;
-            }
-        }
-    }
+    let graphics: Graphics = Graphics::new();
+    graphics.draw_box(20, 20, 100, 100, &RGB::light_red());
+    graphics.draw_box(70, 50, 100, 100, &RGB::light_green());
+    graphics.draw_box(120, 80, 100, 100, &RGB::light_blue());
+    graphics.draw_circle(25, 25, 20, &RGB::light_yellow());
 
     loop {}
 }
@@ -40,10 +41,6 @@ fn init_graphic() {
     }
 }
 
-fn convert_u16_color(r:u8, g:u8, b:u8) -> u16{
-    return (((b >> 3) as u16) << 10) + (((g >> 3) as u16) << 5) + (r >> 3) as u16;
-}
-
 #[allow(private_no_mangle_fns)]
 #[no_mangle]
 #[lang = "panic_fmt"]
@@ -53,5 +50,3 @@ extern "C" fn panic_fmt() -> ! {
 
 #[lang = "eh_personality"]
 pub extern fn eh_personality() {}
-
-
