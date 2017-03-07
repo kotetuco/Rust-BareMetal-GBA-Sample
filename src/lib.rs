@@ -13,6 +13,8 @@ extern crate rlibc;
 mod rgb;
 mod gba_color;
 mod graphics;
+mod font;
+mod font_def;
 
 use rgb::RGB;
 use rgb::RGBDef;
@@ -23,10 +25,22 @@ pub extern "C" fn entry() {
     init_graphic();
 
     let graphics: Graphics = Graphics::new();
+
+    // rectangle
     graphics.draw_box(20, 20, 100, 100, &RGB::light_red());
     graphics.draw_box(70, 50, 100, 100, &RGB::light_green());
     graphics.draw_box(120, 80, 100, 100, &RGB::light_blue());
-    graphics.draw_circle(25, 25, 20, &RGB::light_yellow());
+
+    // circle
+    let radius:u16 = 20;
+    graphics.draw_circle(graphics.width() - (radius + 1), (radius + 1), radius, &RGB::light_yellow());
+
+    // character
+    let start_x:u16 = 0;
+    let start_y:u16 = 0;
+    graphics.draw_char('a', start_x, start_y, &RGB::white());
+    graphics.draw_char('b', start_x + (8 * 1), start_y, &RGB::white());
+    graphics.draw_char('c', start_x + (8 * 2), start_y, &RGB::white());
 
     loop {}
 }

@@ -4,6 +4,7 @@
 
 use rgb::RGB;
 use gba_color::GBAColor;
+use font::Font;
 
 pub struct Graphics {
     vram_address: u32,
@@ -38,7 +39,6 @@ impl Graphics {
         }
     }
 
-    #[no_mangle]
     pub fn draw_circle(&self, center_x:u16, center_y:u16, r:u16, color:&RGB) {
         let mut x: u16 = r;
         let mut y: u16 = 0;
@@ -67,6 +67,22 @@ impl Graphics {
             }
             y += 1;
             f += (4 * y + 2) as i32;
+        }
+    }
+
+    pub fn draw_char(&self, ch:char, x:u16, y:u16, color:&RGB) {
+        let char_data:[u8; 16] = Font::get_charactor(ch);
+        for index in 0..15 {
+            let byte_data:u8 = char_data[index];
+            let offset_y = index as u16;
+            if (byte_data & 0x80) != 0x00 { self.draw_dot(x + 0, y + offset_y, color); }
+            if (byte_data & 0x40) != 0x00 { self.draw_dot(x + 1, y + offset_y, color); }
+            if (byte_data & 0x20) != 0x00 { self.draw_dot(x + 2, y + offset_y, color); }
+            if (byte_data & 0x10) != 0x00 { self.draw_dot(x + 3, y + offset_y, color); }
+            if (byte_data & 0x08) != 0x00 { self.draw_dot(x + 4, y + offset_y, color); }
+            if (byte_data & 0x04) != 0x00 { self.draw_dot(x + 5, y + offset_y, color); }
+            if (byte_data & 0x02) != 0x00 { self.draw_dot(x + 6, y + offset_y, color); }
+            if (byte_data & 0x01) != 0x00 { self.draw_dot(x + 7, y + offset_y, color); }
         }
     }
 
