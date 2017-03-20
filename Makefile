@@ -22,7 +22,7 @@ rom.ld
 
 $(BUILD_DIR)/first.o: first.rs $(BUILD_DIR)/libcore.rlib
 	rustc --target=arm-none-eabi.json --crate-type=staticlib --emit=obj \
-	-C lto -C opt-level=2 -C no-prepopulate-passes -C no-stack-check \
+	-C lto -C opt-level=2 -C no-prepopulate-passes \
 	-C relocation-model=static -Z verbose -Z no-landing-pads \
 	-o $(BUILD_DIR)/first.o first.rs --extern core=$(BUILD_DIR)/libcore.rlib
 
