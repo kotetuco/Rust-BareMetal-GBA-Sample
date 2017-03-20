@@ -36,10 +36,9 @@ fn init_graphic() {
     }
 }
 
-#[allow(private_no_mangle_fns)]
 #[no_mangle]
 #[lang = "panic_fmt"]
-extern "C" fn panic_fmt() -> ! {
+pub extern fn panic_fmt() -> ! {
     loop {}
 }
 
