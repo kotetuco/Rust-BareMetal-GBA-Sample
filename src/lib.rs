@@ -4,11 +4,6 @@
 
 #![feature(lang_items)]
 #![no_std]
-#![feature(asm)]
-#![feature(compiler_builtins_lib)]
-
-extern crate compiler_builtins;
-extern crate rlibc;
 
 mod rgb;
 mod gba_color;
