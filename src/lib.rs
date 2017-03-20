@@ -1,14 +1,9 @@
 //
 // kotetuco, 2017
-// 
+//
 
 #![feature(lang_items)]
 #![no_std]
-#![feature(asm)]
-#![feature(compiler_builtins_lib)]
-
-extern crate compiler_builtins;
-extern crate rlibc;
 
 #[no_mangle]
 pub extern "C" fn entry() {
@@ -53,5 +48,3 @@ extern "C" fn panic_fmt() -> ! {
 
 #[lang = "eh_personality"]
 pub extern fn eh_personality() {}
-
-

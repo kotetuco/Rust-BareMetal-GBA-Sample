@@ -17,7 +17,3 @@ lto = true
 panic = "abort"
 opt-level = 2
 lto = true
-
-[dependencies]
-rlibc = "1.0.0"
-compiler_builtins = { git = "https://github.com/rust-lang-nursery/compiler-builtins" }
