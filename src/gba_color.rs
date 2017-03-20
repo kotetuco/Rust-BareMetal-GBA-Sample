@@ -10,6 +10,8 @@ pub trait GBAColor {
 
 impl GBAColor for RGB {
     fn convert_u16_color(&self) -> u16{
-        return (((self.b >> 3) as u16) << 10) + (((self.g >> 3) as u16) << 5) + (self.r >> 3) as u16;
+        return (((self.b & 0x1F) as u16) << 10) +
+               (((self.g & 0x1F) as u16) << 5) +
+               (self.r & 0x1F) as u16;
     }
 }

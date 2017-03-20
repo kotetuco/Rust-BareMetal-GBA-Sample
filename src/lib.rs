@@ -4,11 +4,6 @@
 
 #![feature(lang_items)]
 #![no_std]
-#![feature(asm)]
-#![feature(compiler_builtins_lib)]
-
-extern crate compiler_builtins;
-extern crate rlibc;
 
 mod rgb;
 mod gba_color;
@@ -51,10 +46,9 @@ fn init_graphic() {
     }
 }
 
-#[allow(private_no_mangle_fns)]
 #[no_mangle]
 #[lang = "panic_fmt"]
-extern "C" fn panic_fmt() -> ! {
+pub extern fn panic_fmt() -> ! {
     loop {}
 }
 
