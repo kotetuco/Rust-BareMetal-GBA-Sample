@@ -33,35 +33,35 @@ impl RGBDef for RGB {
     }
 
     fn light_red() -> RGB {
-        return RGB { r: 0xff, g: 0x00, b: 0x00,};
+        return RGB { r: 0xFF, g: 0x00, b: 0x00,};
     }
 
     fn light_green() -> RGB {
-        return RGB { r: 0x00, g: 0xff, b: 0x00,};
+        return RGB { r: 0x00, g: 0xFF, b: 0x00,};
     }
 
     fn light_yellow() -> RGB {
-        return RGB { r: 0xff, g: 0xff, b: 0x00,};
+        return RGB { r: 0xFF, g: 0xFF, b: 0x00,};
     }
 
     fn light_blue() -> RGB {
-        return RGB { r: 0x00, g: 0x00, b: 0xff,};
+        return RGB { r: 0x00, g: 0x00, b: 0xFF,};
     }
 
     fn light_purple() -> RGB {
-        return RGB { r: 0xff, g: 0x00, b: 0xff,};
+        return RGB { r: 0xFF, g: 0x00, b: 0xFF,};
     }
 
     fn light_pale_blue() -> RGB {
-        return RGB { r: 0x00, g: 0xff, b: 0xff,};
+        return RGB { r: 0x00, g: 0xFF, b: 0xFF,};
     }
 
     fn white() -> RGB {
-        return RGB { r: 0xff, g: 0xff, b: 0xff,};
+        return RGB { r: 0xFF, g: 0xFF, b: 0xFF,};
     }
 
     fn light_gray() -> RGB {
-        return RGB { r: 0xc6, g: 0xc6, b: 0xc6,};
+        return RGB { r: 0xC6, g: 0xC6, b: 0xC6,};
     }
 
     fn dark_red() -> RGB {

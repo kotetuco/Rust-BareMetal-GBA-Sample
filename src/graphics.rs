@@ -31,21 +31,18 @@ impl Graphics {
     pub fn draw_box(&self, x:u16, y:u16, width:u16, height:u16, color:&RGB) {
         for offset_y in 0..height {
             for offset_x in 0..width {
-                let valid_x = if x + offset_x > self.screen_x { self.screen_x } else { x + offset_x };
-                let valid_y = if y + offset_y > self.screen_y { self.screen_y } else { y + offset_y };
-                self.draw_dot(valid_x, valid_y, color);
+                if (x + offset_x > self.screen_x) || (y + offset_y > self.screen_y) {
+                    continue;
+                }
+                self.draw_dot(x + offset_x, y + offset_y, color);
             }
         }
     }
 
-    #[no_mangle]
     pub fn draw_circle(&self, center_x:u16, center_y:u16, r:u16, color:&RGB) {
         let mut x: u16 = r;
         let mut y: u16 = 0;
         let mut f: i32 = 3 - ((r as i32) * 2);
-
-        // draw center
-        self.draw_dot(center_x, center_y, color);
 
         loop {
             if x < y {
@@ -68,13 +65,5 @@ impl Graphics {
             y += 1;
             f += (4 * y + 2) as i32;
         }
-    }
-
-    pub fn width(&self) -> u16 {
-        return self.screen_x;
-    }
-
-    pub fn height(&self) -> u16 {
-        return self.screen_y;
     }
 }
