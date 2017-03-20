@@ -8,20 +8,32 @@
 #[no_mangle]
 pub extern "C" fn entry() {
     init_graphic();
-
-    let color:u16 = convert_u16_color(0, 255, 0);
     let vram_address:u32 = 0x06000000;
 
-    for y in 0..160 {
-        for x in 0..240 {
-            let offset: u32 = ((y * 240) + x) as u32;
-            let vram: *mut u16 = (vram_address + (offset * 2)) as *mut u16;
-            unsafe {
-                *vram = color;
-            }
-        }
+    // 1点目（118, 80）
+    let white:u16 = convert_u16_color(0x1F, 0x1F, 0x1F);
+    let mut offset: u32 = ((80 * 240) + 118) as u32;
+    // 1ドット2バイト使用することに注意
+    let mut vram: *mut u16 = (vram_address + (offset * 2)) as *mut u16;
+    unsafe {
+        *vram = white;
     }
 
+    // 2点目（120, 80）
+    let green:u16 = convert_u16_color(0x00, 0x1F, 0x00);
+    offset = ((80 * 240) + 120) as u32;
+    vram = (vram_address + (offset * 2)) as *mut u16;
+    unsafe {
+        *vram = green;
+    }
+
+    // 3点目（122, 80）
+    let red:u16 = convert_u16_color(0x1F, 0x00, 0x00);
+    offset = ((80 * 240) + 122) as u32;
+    vram = (vram_address + (offset * 2)) as *mut u16;
+    unsafe {
+        *vram = red;
+    }
     loop {}
 }
 
@@ -36,13 +48,14 @@ fn init_graphic() {
 }
 
 fn convert_u16_color(r:u8, g:u8, b:u8) -> u16{
-    return (((b >> 3) as u16) << 10) + (((g >> 3) as u16) << 5) + (r >> 3) as u16;
+    return (((b & 0x1F) as u16) << 10) +
+           (((g & 0x1F) as u16) << 5) +
+           (r & 0x1F) as u16;
 }
 
-#[allow(private_no_mangle_fns)]
 #[no_mangle]
 #[lang = "panic_fmt"]
-extern "C" fn panic_fmt() -> ! {
+pub extern fn panic_fmt() -> ! {
     loop {}
 }
 
