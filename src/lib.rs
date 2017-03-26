@@ -22,26 +22,27 @@ pub extern "C" fn entry() {
     let graphics: Graphics = Graphics::new();
 
     // rectangle
-    graphics.draw_box(20, 20, 100, 100, &RGB::light_red());
-    graphics.draw_box(70, 50, 100, 100, &RGB::light_green());
-    graphics.draw_box(120, 80, 100, 100, &RGB::light_blue());
+    graphics.draw_box(0, 0, 240, 160, &RGB::dark_green());
 
     // circle
     let radius:u16 = 20;
-    graphics.draw_circle(graphics.width() - (radius + 1), (radius + 1), radius, &RGB::light_yellow());
+    graphics.draw_circle(graphics.width() - (radius + 1),
+                         (radius + 1),
+                         radius,
+                         &RGB::white());
 
     // character
-    graphics.draw_string("Hello, World!", 0, 0, &RGB::white());
+    graphics.draw_string("Hello, World!", 10, 10, &RGB::white());
 
     loop {}
 }
 
 fn init_graphic() {
     let ioram_address: u32 = 0x04000000;
+    let video_mode: *mut u8 = ioram_address as *mut u8;
+	let bg: *mut u8 = (ioram_address + 1) as *mut u8;
     unsafe {
-        let video_mode: *mut u8 = ioram_address as *mut u8;
         *video_mode = 0x03; // mode 3
-        let bg: *mut u8 = (ioram_address + 1) as *mut u8;
         *bg = 0x04; // BG2
     }
 }
