@@ -33,62 +33,62 @@ impl RGBDef for RGB {
     }
 
     fn light_red() -> RGB {
-        return RGB { r: 0xff, g: 0x00, b: 0x00,};
+        return RGB { r: 0x1F, g: 0x00, b: 0x00,};
     }
 
     fn light_green() -> RGB {
-        return RGB { r: 0x00, g: 0xff, b: 0x00,};
+        return RGB { r: 0x00, g: 0x1F, b: 0x00,};
     }
 
     fn light_yellow() -> RGB {
-        return RGB { r: 0xff, g: 0xff, b: 0x00,};
+        return RGB { r: 0x1F, g: 0x1F, b: 0x00,};
     }
 
     fn light_blue() -> RGB {
-        return RGB { r: 0x00, g: 0x00, b: 0xff,};
+        return RGB { r: 0x00, g: 0x00, b: 0x1F,};
     }
 
     fn light_purple() -> RGB {
-        return RGB { r: 0xff, g: 0x00, b: 0xff,};
+        return RGB { r: 0x1F, g: 0x00, b: 0x1F,};
     }
 
     fn light_pale_blue() -> RGB {
-        return RGB { r: 0x00, g: 0xff, b: 0xff,};
+        return RGB { r: 0x00, g: 0x1F, b: 0x1F,};
     }
 
     fn white() -> RGB {
-        return RGB { r: 0xff, g: 0xff, b: 0xff,};
+        return RGB { r: 0x1F, g: 0x1F, b: 0x1F,};
     }
 
     fn light_gray() -> RGB {
-        return RGB { r: 0xc6, g: 0xc6, b: 0xc6,};
+        return RGB { r: 0x0F, g: 0x0F, b: 0x0F,};
     }
 
     fn dark_red() -> RGB {
-        return RGB { r: 0x84, g: 0x00, b: 0x00,};
+        return RGB { r: 0x0F, g: 0x00, b: 0x00,};
     }
 
     fn dark_green() -> RGB {
-        return RGB { r: 0x00, g: 0x84, b: 0x00,};
+        return RGB { r: 0x00, g: 0x0F, b: 0x00,};
     }
 
     fn dark_yellow() -> RGB {
-        return RGB { r: 0x84, g: 0x84, b: 0x00,};
+        return RGB { r: 0x0F, g: 0x0F, b: 0x00,};
     }
 
     fn dark_blue() -> RGB {
-        return RGB { r: 0x00, g: 0x00, b: 0x84,};
+        return RGB { r: 0x00, g: 0x00, b: 0x0F,};
     }
 
     fn dark_purple() -> RGB {
-        return RGB { r: 0x84, g: 0x00, b: 0x84,};
+        return RGB { r: 0x0F, g: 0x00, b: 0x0F,};
     }
 
     fn dark_pale_blue() -> RGB {
-        return RGB { r: 0x00, g: 0x84, b: 0x84,};
+        return RGB { r: 0x0F, g: 0x0F, b: 0x0F,};
     }
 
     fn dark_gray() -> RGB {
-        return RGB { r: 0x84, g: 0x84, b: 0x84,};
+        return RGB { r: 0x07, g: 0x07, b: 0x07,};
     }
 }
