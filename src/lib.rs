@@ -28,10 +28,10 @@ pub extern "C" fn entry() {
 
 fn init_graphic() {
     let ioram_address: u32 = 0x04000000;
+    let video_mode: *mut u8 = ioram_address as *mut u8;
+    let bg: *mut u8 = (ioram_address + 1) as *mut u8;
     unsafe {
-        let video_mode: *mut u8 = ioram_address as *mut u8;
         *video_mode = 0x03; // mode 3
-        let bg: *mut u8 = (ioram_address + 1) as *mut u8;
         *bg = 0x04; // BG2
     }
 }
