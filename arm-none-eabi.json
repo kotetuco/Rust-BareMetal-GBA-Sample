@@ -9,6 +9,7 @@
   "relocation-model": "static",
   "archive-format": "gnu",
   "target-env": "gnu",
+  "linker-flavor": "ld",
   "no-compiler-rt": true,
   "linker-is-gnu": true,
   "disable-redzone": true,

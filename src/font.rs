@@ -2,7 +2,7 @@
 // kotetuco, 2017
 //
 
-use font_def::FONT_DATAS;
+use font_def::FONT_DATA;
 
 pub struct Font {
     size_width: u16,
@@ -19,7 +19,7 @@ impl Font {
 
     pub fn get_character(&self, ch: char) -> [u8; 16] {
         let index = ch as usize;
-        return FONT_DATAS[index];
+        return FONT_DATA[index];
     }
 
     pub fn font_width(&self) -> u16 {
